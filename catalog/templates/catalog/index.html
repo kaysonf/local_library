@@ -1,0 +1,18 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+
+{% block title %}
+  HOME PAGEE
+{% endblock %}
+
+{% block content %}
+  <h1>Local Library Home</h1>
+
+  <h2>Dynamic content below</h2>
+  <p>The library has the following record counts:</p>
+  <p>Books:{{num_books}}</p>
+  <p>Copies:{{num_instances}}</p>
+  <p>Copies Available:{{num_instances_available}}</p>
+  <p>Authors: {{num_authors}}</p>
+
+{% endblock %}
