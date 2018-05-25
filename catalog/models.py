@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 import uuid
+
+from django.template.defaultfilters import slugify
 # Create your models here.
 class Genre(models.Model):
     """
@@ -28,7 +30,7 @@ class Book(models.Model):
         """
         returns the url to access a detail record for this book
         """
-        return reverse('book-detail', args=[str(self.id)])
+        return reverse('catalog:book-detail', kwargs={'pk':(str(self.id))})
 
     def display_genre(self):
         return ','.join([genre.name for genre in self.genre.all()[:3]])
@@ -64,10 +66,10 @@ class Author(models.Model):
     date_of_death = models.DateField('Died', null=True, blank=True)
 
     class Meta:
-        ordering = ["last_name", "first_name"]
+        ordering = ["last_name"]
 
     def get_absolute_url(self):
-        return reverse('author-detail', args=[str(self.id)])
+        return reverse('catalog:author-detail', args=[str(self.id)])
 
     def __str__(self):
         return '{0}, {1}'.format(self.last_name, self.first_name)

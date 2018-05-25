@@ -1,0 +1,20 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+
+{% block title %}
+  LIST PAGE
+{% endblock %}
+
+{% block content %}
+  <h1>Book list:</h1>
+
+  {% if book_list %}
+    <ul>
+      {% for book in book_list %}
+        <li><a href="{{book.get_absolute_url}}">{{ book.title }}</a></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h2>NO BOOKS IN THIS LIBRARY</h2>
+  {% endif %}
+{% endblock %}
